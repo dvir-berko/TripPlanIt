@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripplanit-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tripplanit
+  template:
+    metadata:
+      labels:
+        app: tripplanit
+    spec:
+      containers:
+      - name: tripplanit
+        image: dvirbf/tripplanit:latest
+        ports:
+        - containerPort: 5000
