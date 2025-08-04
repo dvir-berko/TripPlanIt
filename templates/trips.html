@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip List</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+        .trip { background: #fff; border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+        .trip h3 { margin-top: 0; }
+        form { background: #fff; padding: 20px; border: 1px solid #ccc; margin-top: 30px; border-radius: 8px; }
+        label { display: block; margin-top: 10px; }
+        input[type="text"], input[type="date"] {
+            width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box;
+        }
+        button { margin-top: 15px; padding: 10px 15px; }
+    </style>
+</head>
+<body>
+    <h1>All Trips</h1>
+    {% if trips %}
+        {% for i, trip in trips %}
+            <div class="trip">
+                <h3>Trip #{{ i }}</h3>
+                <p><strong>Destination:</strong> {{ trip.destination }}</p>
+                <p><strong>Start Date:</strong> {{ trip.start_date }}</p>
+                <p><strong>End Date:</strong> {{ trip.end_date }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No trips found.</p>
+    {% endif %}
+
+    <h2>Add a New Trip</h2>
+    <form method="post" action="/trips">
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination" required>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+
+        <button type="submit">Add Trip</button>
+    </form>
+</body>
+</html>
